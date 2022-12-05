@@ -1,8 +1,8 @@
 .cell{
     display: grid;
-    border: 1px solid red;
+    border: 2px solid red;
+    border-collapse: collapse;
     grid-template: 1fr 1fr 1fr / 1fr 1fr 1fr;
-    column-gap: 2px;
 }
 .cell > *{
     width:90px;
@@ -17,6 +17,9 @@ input::-webkit-inner-spin-button {
 }
 input[type=number] {
     -moz-appearance: textfield;
+}
+input{
+    color:gray;
 }
 input[disabled]{
     color:white;

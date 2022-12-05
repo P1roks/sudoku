@@ -21,9 +21,9 @@
     grid-template: 1fr 1fr 1fr / 1fr 1fr 1fr;
     width:900px;
 }
-#board .cell:nth-child(odd){
-    background-color: gray;
+#board .cell:nth-child(odd) > *{
+    background-color: darkorchid;
 }
-#board .cell:nth-child(even){
-    background-color: black;
+#board .cell:nth-child(even) > *{
+    background-color: orange;
 }
