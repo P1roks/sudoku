@@ -1,0 +1,17 @@
+.cell{
+    display: grid;
+    border: 1px solid black;
+    grid-template: 1fr 1fr 1fr / 1fr 1fr 1fr;
+}
+.cell > *{
+    width: 100px;
+    height: 100px;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type=number] {
+    -moz-appearance: textfield;
+}
