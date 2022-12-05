@@ -1,5 +1,11 @@
 #board{
     display: grid;
     grid-template: 1fr 1fr 1fr / 1fr 1fr 1fr;
-    width:1000px;
+    width:900px;
+}
+#board .cell:nth-child(odd){
+    background-color: gray;
+}
+#board .cell:nth-child(even){
+    background-color: black;
 }

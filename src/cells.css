@@ -1,11 +1,14 @@
 .cell{
     display: grid;
-    border: 1px solid black;
+    border: 1px solid red;
     grid-template: 1fr 1fr 1fr / 1fr 1fr 1fr;
+    column-gap: 2px;
 }
 .cell > *{
-    width: 100px;
-    height: 100px;
+    width:90px;
+    height:90px;
+    text-align: center;
+    font-size: 200%;
 }
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
