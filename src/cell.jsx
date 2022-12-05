@@ -3,7 +3,9 @@ import "./cells.css"
 
 export const Cell = props => {
     let tiles = props.tiles.map(tileNo => (
-        <input type="number" value={tileNo} />
+        tileNo === 0 ?
+        <input type="number" name="" id="" /> :
+        <input type="number" name="" id="" value={tileNo} disabled /> 
     ))
 
     return (
