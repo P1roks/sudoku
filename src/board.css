@@ -22,8 +22,8 @@
     width:900px;
 }
 #board .cell:nth-child(odd) > *{
-    background-color: darkorchid;
+    background-color: gray;
 }
 #board .cell:nth-child(even) > *{
-    background-color: orange;
+    background-color: #c5c56b;
 }
