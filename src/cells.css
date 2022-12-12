@@ -19,7 +19,7 @@ input[type=number] {
     -moz-appearance: textfield;
 }
 input{
-    color:gray;
+    color:white;
 }
 input[disabled]{
     color:white;

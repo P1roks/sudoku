@@ -1,11 +1,10 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
-import { Cell } from "./cell";
+import { Cell, invis } from "./cell";
 import "./board.css"
 import { genCell } from "./utils";
 
 export function Board(){
-    let [invisibleCoord,setCords] = useState([])
     // let [tiles,setTiles] = useState([
     //     genCell(),
     //     genCell(),
@@ -17,6 +16,14 @@ export function Board(){
     //     genCell(),
     //     genCell(),
     // ])
+    // function addToInvis(coord,val){
+    //     let temp = new Map(invis)
+    //     temp.set(coord,val)
+    //     setInvis(temp)
+    // }
+    // function addMapInvis(newInvis){
+    //     setInvis(new Map([...invis,...newInvis]))
+    // }
     let [tiles,setTiles] = useState(
         [[3,1,6,5,2,9,4,8,7],
         [5,7,8,1,3,4,6,2,9],
@@ -33,7 +40,11 @@ export function Board(){
     let cells = tiles.map((tile,no) => {
     temp += (no) % 3 === 0 ? 3 : 0; 
     return (
-    <Cell key = {no}  y = {temp} tiles = {tile} rStart = {no % 3 * 3} addCoord = {coord => setCords([...invisibleCoord,coord])} />)})
+    <Cell key = {no}  y = {temp} tiles = {tile} rStart = {no % 3 * 3} /* setInvis = {invis => addMapInvis(invis)} *//* addCoord = {coord => setCords([...invisibleCoord,coord])} */ />)})
+
+    useEffect(() => {
+        console.log(invis)
+    },[])
 
     return (
         <div id="sudoku">
