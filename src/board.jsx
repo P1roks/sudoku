@@ -28,15 +28,12 @@ export function Board(){
         [9,4,7,3,5,1,2,8,6],
         [2,5,6,8,7,4,3,1,9]])
 
-        //since 0 % 3 = 0 , we need to offset that
+    //since 0 % 3 = 0 , we need to offset that
     let temp = -3;
     let cells = tiles.map((tile,no) => {
     temp += (no) % 3 === 0 ? 3 : 0; 
     return (
-    <Cell key = {no}  y = {temp} tiles = {tile} rStart = {no % 3 * 3} addCoord = {(coord) => {
-        let cp = JSON.parse(JSON.stringify(invisibleCoord));
-        cp.push(coord)
-        setCords(cp)}} />)})
+    <Cell key = {no}  y = {temp} tiles = {tile} rStart = {no % 3 * 3} addCoord = {coord => setCords([...invisibleCoord,coord])} />)})
 
     return (
         <div id="sudoku">

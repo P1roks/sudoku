@@ -1,7 +1,9 @@
 import React from "react"
+import { useEffect } from "react";
 import "./cells.css"
 
 export const Cell = props => {
+    let invis = new Map();
     let y = props.y - 1;
     // let tiles = props.tiles.map((tileNo,x) => (
     //     tileNo === 0 ?
@@ -14,18 +16,20 @@ export const Cell = props => {
         y += x % 3 == 0 ? 1 : 0;
         x = x % 3 + props.rStart;
         let visible = true;
+        let coords = `${y}${x}`
         if(toDissapear > 0 && Math.random() > .7){
             --toDissapear;
             visible = false;
-            props.addCoord(Number(`{x}{y}`))
+            invis.set(coords,tileNo)
         }
         return (
             visible ?
-            <input type="number" name={`${y}${x}`} id={`${y}${x}`} value={tileNo} disabled /> :
-            <input type="number" name={`${y}${x}`} id={`${y}${x}`} /> 
+            <input type="number" name={coords} id={coords} value={tileNo} disabled key={coords} /> :
+            <input type="number" name={coords} id={coords} key={coords} /> 
         )
     })
 
+    console.log(invis)
     return (
         <div className="cell">
             {tiles}
