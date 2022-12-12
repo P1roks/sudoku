@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import { Cell } from "./cell";
 import "./board.css"
 import { genCell } from "./utils";
 
 export function Board(){
+    let [invisibleCoord,setCords] = useState([])
     // let [tiles,setTiles] = useState([
     //     genCell(),
     //     genCell(),
@@ -32,7 +33,10 @@ export function Board(){
     let cells = tiles.map((tile,no) => {
     temp += (no) % 3 === 0 ? 3 : 0; 
     return (
-    <Cell key = {no}  y = {temp} tiles = {tile} rStart = {no % 3 * 3} />)})
+    <Cell key = {no}  y = {temp} tiles = {tile} rStart = {no % 3 * 3} addCoord = {(coord) => {
+        let cp = JSON.parse(JSON.stringify(invisibleCoord));
+        cp.push(coord)
+        setCords(cp)}} />)})
 
     return (
         <div id="sudoku">
