@@ -3,8 +3,24 @@ import { useState } from "react";
 import { Cell, invis } from "./cell";
 import "./board.css"
 import { genCell } from "./utils";
+import { useRef } from "react";
 
 export function Board(){
+    const formRef = useRef();
+    function check(event){
+        let checked = new Map();
+        event.preventDefault();
+        const formInputs = [...formRef.current.elements].filter(elem => !elem.disabled && elem.type === "number")
+        formInputs.forEach(inp => {
+            if(inp.valueAsNumber === invis.get(inp.id)) inp.className = "right"
+            else inp.className = "wrong"
+        })
+    }
+    function clear(event){
+        event.preventDefault();
+        const formInputs = [...formRef.current.elements].filter(elem => !elem.disabled && elem.type === "number")
+        formInputs.forEach(inp => inp.valueAsNumber = NaN)
+    }
     // let [tiles,setTiles] = useState([
     //     genCell(),
     //     genCell(),
@@ -16,14 +32,6 @@ export function Board(){
     //     genCell(),
     //     genCell(),
     // ])
-    // function addToInvis(coord,val){
-    //     let temp = new Map(invis)
-    //     temp.set(coord,val)
-    //     setInvis(temp)
-    // }
-    // function addMapInvis(newInvis){
-    //     setInvis(new Map([...invis,...newInvis]))
-    // }
     let [tiles,setTiles] = useState(
         [[3,1,6,5,2,9,4,8,7],
         [5,7,8,1,3,4,6,2,9],
@@ -40,21 +48,21 @@ export function Board(){
     let cells = tiles.map((tile,no) => {
     temp += (no) % 3 === 0 ? 3 : 0; 
     return (
-    <Cell key = {no}  y = {temp} tiles = {tile} rStart = {no % 3 * 3} /* setInvis = {invis => addMapInvis(invis)} *//* addCoord = {coord => setCords([...invisibleCoord,coord])} */ />)})
+    <Cell key = {no}  y = {temp} tiles = {tile} rStart = {no % 3 * 3} />)})
 
     useEffect(() => {
-        console.log(invis)
+//        console.log(invis)
     },[])
 
     return (
-        <div id="sudoku">
-            <div id="board">
-                {cells}
-            </div>
-            <div id="check">
-                <button>Sprawdź</button>
-                <button>Reset</button>
-            </div>
-        </div>
+        <form ref={formRef} onSubmit={check} onReset={clear} id="sudoku">
+                <div id="board">
+                    {cells}
+                </div>
+                <div id="check">
+                    <button type="submit">Sprawdź</button>
+                    <button type="reset">Reset</button>
+                </div>
+        </form>
     )
 }

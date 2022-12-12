@@ -20,7 +20,7 @@ export const Cell = React.memo(props => {
         return (
             visible ?
             <input type="number" name={coords} id={coords} value={tileNo} disabled key={coords} /> :
-            <input type="number" name={coords} id={coords} key={coords} /> 
+            <input type="number" name={coords} id={coords} key={coords}/> 
         )
     })
 

@@ -24,3 +24,9 @@ input{
 input[disabled]{
     color:white;
 }
+.wrong{
+    color:red;
+}
+.right{
+    color:greenyellow;
+}
