@@ -21,9 +21,26 @@
     grid-template: 1fr 1fr 1fr / 1fr 1fr 1fr;
     width:900px;
 }
-#board .cell:nth-child(odd) > *{
+#board .cell:nth-child(odd) > input:enabled{
     background-color: gray;
 }
-#board .cell:nth-child(even) > *{
+#board .cell:nth-child(even) > input:enabled{
     background-color: #c5c56b;
+}
+#board .cell:nth-child(odd) > input:disabled{
+    background-color: #737373;
+}
+#board .cell:nth-child(even) > input:disabled{
+    background-color: #bcbc55;
+}
+#result{
+	width:10%;
+	text-align: center;
+	align-items: center;
+	display:flex;
+	font-size: 125%;
+}
+#result a{
+	text-decoration: none;
+	color: cornflowerblue;
 }
