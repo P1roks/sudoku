@@ -3,12 +3,12 @@
     border: 2px solid black;
     border-collapse: collapse;
     grid-template: 1fr 1fr 1fr / 1fr 1fr 1fr;
-}
-.cell > *{
-    width:90px;
-    height:90px;
-    text-align: center;
-    font-size: 200%;
+    & > *{
+	    width:90px;
+	    height:90px;
+	    text-align: center;
+	    font-size: 200%;
+    }
 }
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
