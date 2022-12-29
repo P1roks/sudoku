@@ -1,8 +1,15 @@
 import React from "react"
 import "./cells.css"
 
+interface CellProps {
+	y: number;
+	rStart: number;
+	toDissapear: number;
+	tiles: Array<Number>;
+}
+
 export let invis = new Map();
-export const Cell = React.memo(props => {
+export const Cell = (props: CellProps) => {
     let y = props.y - 1;
 
     let toDissapear = props.toDissapear;
@@ -18,7 +25,7 @@ export const Cell = React.memo(props => {
         }
         return (
             visible ?
-            <input type="number" name={coords} id={coords} value={tileNo} disabled key={coords} /> :
+            <input type="number" name={coords} id={coords} value={tileNo.toString()} disabled key={coords} /> :
             <input type="number" name={coords} id={coords} key={coords}/> 
         )
     })
@@ -28,4 +35,4 @@ export const Cell = React.memo(props => {
             {tiles}
         </div>
     )
-})
+}

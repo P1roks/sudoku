@@ -1,6 +1,6 @@
 import { getRandomInt, shuffle } from "./utils";
 
-let sudokus = [
+const sudokus = [
     [[3,1,6,5,2,9,4,8,7],
     [5,7,8,1,3,4,6,2,9],
     [4,9,2,7,6,8,5,3,1],
@@ -23,8 +23,8 @@ let sudokus = [
 
 export const randomizeSudoku = () => {
     let rand = getRandomInt(sudokus.length);
-    console.log(rand)
     let board = sudokus.at(rand);
+    if(!board) return;
     let mappings = shuffle([1,2,3,4,5,6,7,8,9]);
 
     for(let y = 0; y < board.length; y++){

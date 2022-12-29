@@ -7,16 +7,18 @@ import {randomizeSudoku} from "./randomizer"
 import JSConfetti from "js-confetti";
 
 export function Board(){
-    const formRef = useRef(null);
-    const submitRef = useRef(null);
-    const resultRef = useRef(null);
-    function check(event){
+    const formRef = useRef<HTMLFormElement>(null);
+    const submitRef = useRef<HTMLButtonElement>(null);
+    const resultRef = useRef<HTMLDivElement>(null);
+
+    function check(event: React.FormEvent){
+    	if(!submitRef.current || !resultRef.current || !formRef.current) return;
         event.preventDefault();
-        const formInputs = [...formRef.current.elements].filter(elem => !elem.disabled && elem.type === "number");
-        // submitRef.current.disabled = "true";
+        const formInputs = [...formRef.current.elements].filter((elem: any) => !elem.disabled && elem.type === "number"); //TODO do not use any anywhere
+        submitRef.current.disabled = true;
 
         let correct = 0;
-        formInputs.forEach(inp => {
+        formInputs.forEach((inp: any) => {
             if(inp.valueAsNumber === invis.get(inp.id)){
 		 inp.className = "right" //user guessed correclty
 		 ++correct;
@@ -32,16 +34,17 @@ export function Board(){
         }
 	else{resultRef.current.innerHTML = `Uzyskałeś ${correct}/${invis.size} punktów! <br /> Stanowi to ${(correct / invis.size * 100).toFixed(1)}%`;}
     }
-    function clear(event){
+    function clear(event: React.FormEvent){
+    	if(!submitRef.current || !resultRef.current || !formRef.current) return;
         event.preventDefault();
-        const formInputs = [...formRef.current.elements].filter(elem => !elem.disabled && elem.type === "number") //get all inputted numbers
-        submitRef.current.disabled = ""; //enable submit button
-    	formInputs.forEach(inp => {inp.valueAsNumber = NaN; inp.className = "";}) //reset all inputs
+        const formInputs = [...formRef.current.elements].filter((elem: any) => !elem.disabled && elem.type === "number") //get all inputted numbers
+        submitRef.current.disabled = false; //enable submit button
+    	formInputs.forEach((inp: any) => {inp.valueAsNumber = NaN; inp.className = "";}) //reset all inputs
 	resultRef.current.innerHTML = ``;
     }
-    let [tiles,setTiles] = useState([])
+    let [tiles,setTiles] = useState<number[][]>([[]])
     useEffect(() => {
-            setTiles(randomizeSudoku())
+            setTiles(randomizeSudoku() || [[]])
     },[])
     
 
