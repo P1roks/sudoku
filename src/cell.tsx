@@ -3,7 +3,6 @@ import "./cells.css"
 
 interface CellProps {
 	y: number;
-	rStart: number;
 	toDissapear: number;
 	tiles: Array<Number>;
 }
@@ -20,8 +19,6 @@ export const Cell = (props: CellProps) => {
 
     let toDissapear = props.toDissapear;
     let row = props.tiles.map((tileNo,x) => {
-        // y += x % 3 == 0 ? 1 : 0;
-        // x = x % 3 + props.rStart;
         let visible = true;
         let coords = `${props.y}${x}`
         if(toDissapear > 0 && Math.random() > .5){

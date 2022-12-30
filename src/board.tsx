@@ -6,7 +6,7 @@ import { useRef } from "react";
 import {randomizeSudoku} from "./randomizer"
 import JSConfetti from "js-confetti";
 
-export function Board(){
+export function Board(props: {toDissapear: number}){
     const formRef = useRef<HTMLFormElement>(null);
     const submitRef = useRef<HTMLButtonElement>(null);
     const resultRef = useRef<HTMLDivElement>(null);
@@ -29,7 +29,7 @@ export function Board(){
             }
         })
         if (correct === invis.size){
-            new JSConfetti().addConfetti(); //only displayed if solved 100% correctly
+            new JSConfetti().addConfetti({confettiNumber:1000}/* {confettiNumber: 243,emojis:["1","2","3","4","5","6","7","8","9"]} */); //only displayed if solved 100% correctly
 	    resultRef.current.innerHTML = `<p>Brawo! udało ci się całkowicie poprawnie rozwiązać sudoku! <a href="./">Wygeneruj następne</a></p>`;
         }
 	else{resultRef.current.innerHTML = `Uzyskałeś ${correct}/${invis.size} punktów! <br /> Stanowi to ${(correct / invis.size * 100).toFixed(1)}%`;}
@@ -52,7 +52,7 @@ export function Board(){
     // let temp = -3;
     let cells = tiles.map((tile,no) => {
     // temp += (no) % 3 === 0 ? 3 : 0; 
-    return <Cell key={no}  y={no} tiles={tile} rStart={no % 3 * 3} toDissapear={7}/>;})
+    return <Cell key={no}  y={no} tiles={tile} toDissapear={props.toDissapear}/>;})
 
     return (
         <form ref={formRef} onSubmit={check} onReset={clear} id="sudoku">
