@@ -49,10 +49,10 @@ export function Board(){
     
 
     //since 0 % 3 = 0 , we need to offset that
-    let temp = -3;
+    // let temp = -3;
     let cells = tiles.map((tile,no) => {
-    temp += (no) % 3 === 0 ? 3 : 0; 
-    return <Cell key={no}  y={temp} tiles={tile} rStart={no % 3 * 3} toDissapear={7}/>;})
+    // temp += (no) % 3 === 0 ? 3 : 0; 
+    return <Cell key={no}  y={no} tiles={tile} rStart={no % 3 * 3} toDissapear={7}/>;})
 
     return (
         <form ref={formRef} onSubmit={check} onReset={clear} id="sudoku">

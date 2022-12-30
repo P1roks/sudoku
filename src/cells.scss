@@ -1,8 +1,6 @@
-.cell{
-    display: grid;
+.row{
     border: 2px solid black;
     border-collapse: collapse;
-    grid-template: 1fr 1fr 1fr / 1fr 1fr 1fr;
     & > *{
 	    width:90px;
 	    height:90px;

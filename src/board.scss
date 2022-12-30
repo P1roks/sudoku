@@ -18,19 +18,41 @@
 }
 #board{
     display: grid;
-    grid-template: 1fr 1fr 1fr / 1fr 1fr 1fr;
-    width:900px;
-    .cell:nth-child(odd) > input:enabled{
-   	 background-color: gray;
+    .row{
+	input{
+		&:enabled{
+			background-color: gray;
+		}
+		&:disabled{
+		  	background-color: #737373;
+		}
+	}
+	input:nth-child(-n + 3), input:nth-child(n + 7){
+		&:enabled{
+			background-color: #c5c56b;
+		}
+		&:disabled{
+			 background-color: #bcbc55;
+		}
+	}
     }
-    .cell:nth-child(even) > input:enabled{
-   	 background-color: #c5c56b;
-    }
-    .cell:nth-child(odd) > input:disabled{
-   	 background-color: #737373;
-    }
-    .cell:nth-child(even) > input:disabled{
-   	 background-color: #bcbc55;
+    .row:nth-child(-n + 3), .row:nth-child(n + 7){
+	input{
+		&:enabled{
+			background-color: gray;
+		}
+		&:disabled{
+		  	background-color: #737373;
+		}
+	}
+	input:nth-child(n + 4):nth-child(-n + 6){
+		&:enabled{
+			background-color: #c5c56b;
+		}
+		&:disabled{
+			 background-color: #bcbc55;
+		}
+	}
     }
 }
 #result{
