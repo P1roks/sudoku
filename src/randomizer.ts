@@ -23,21 +23,20 @@ const sudokus = [
 
 export const randomizeSudoku = () => {
     let rand = getRandomInt(sudokus.length);
-    let board = sudokus.at(0);
-    /* if(!board) return;
-    let mappings = shuffle([1,2,3,4,5,6,7,8,9]);
+    let board = sudokus.at(rand);
+    if(!board) return;
+    let mappings = shuffle([1,2,3,4,5,6,7,8,9]) as number[];
 
     for(let y = 0; y < board.length; y++){
         for(let x = 0; x < board[y].length; x++){
             //Map every number to another number (for example every 4 turns into 5)
             board[y][x] = mappings[board[y][x] - 1]
         }
-    } */
+    }
     //shuffle rows
-    // return [
-    //     shuffle(board.slice(0,3)),
-    //     shuffle(board.slice(3,6)),
-    //     shuffle(board.slice(6)),
-    // ].flat()
-    return board;
+    return [
+        shuffle(board.slice(0,3)),
+        shuffle(board.slice(3,6)),
+        shuffle(board.slice(6)),
+    ].flat() as number[][]
 }

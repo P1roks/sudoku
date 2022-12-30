@@ -36,6 +36,7 @@
 		}
 	}
     }
+    //imagine if css allowed :nth-child(4..=6)
     .row:nth-child(-n + 3), .row:nth-child(n + 7){
 	input{
 		&:enabled{
