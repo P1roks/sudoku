@@ -1,0 +1,10 @@
+#fish
+for file in $(ls ./src/*.scss)
+	sass $file $(echo $file | sed "s|scss|css|")
+end
+
+#bash
+for file in $(ls ./src/*.scss); do sass $file $(echo $file | sed "s|scss|css|"); done
+
+#batch
+Maybe later, not being this masochistic now¯\_(ツ)_/¯

@@ -1,14 +1,14 @@
 import {KeyboardEvent} from "react";
 import "./cells.css"
 
-interface CellProps {
+interface RowProps {
 	y: number;
 	toDissapear: number;
 	tiles: Array<Number>;
 }
 
 export let invis = new Map();
-export const Cell = (props: CellProps) => {
+export const Row = (props: RowProps) => {
     const handleInput = (event: KeyboardEvent<HTMLInputElement>) => {
     	if(event.key === "Backspace") return;
 	event.preventDefault()

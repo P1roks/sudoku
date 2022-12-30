@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
-import { Cell, invis } from "./cell";
+import { Row, invis } from "./row";
 import "./board.css"
 import { useRef } from "react";
 import {randomizeSudoku} from "./randomizer"
@@ -48,11 +48,8 @@ export function Board(props: {toDissapear: number}){
     },[])
     
 
-    //since 0 % 3 = 0 , we need to offset that
-    // let temp = -3;
     let cells = tiles.map((tile,no) => {
-    // temp += (no) % 3 === 0 ? 3 : 0; 
-    return <Cell key={no}  y={no} tiles={tile} toDissapear={props.toDissapear}/>;})
+    return <Row key={no}  y={no} tiles={tile} toDissapear={props.toDissapear}/>;})
 
     return (
         <form ref={formRef} onSubmit={check} onReset={clear} id="sudoku">

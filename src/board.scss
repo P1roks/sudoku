@@ -1,61 +1,30 @@
 #sudoku{
     display:flex;
-    justify-content: space-around;
+    justify-content: space-between;
+    margin: 0 5%;
     align-items: center;
     height: 100%;
+    @media (max-width: 800px){
+	    flex-direction: column;
+	    margin: 0 0;
+    }
 }
 #check{
-    display:flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap:25px;
-    & > *{
+	display:flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap:25px;
+	& > *{
 	    border : 1px solid black;
 	    border-radius: 30px;
 	    padding: 10px;
 	    font-size: 200%;
 	    background-color: transparent;
-    }
-}
-#board{
-    .row{
-	input{
-		&:enabled{
-			background-color: gray;
-		}
-		&:disabled{
-		  	background-color: #737373;
-		}
 	}
-	input:nth-child(-n + 3), input:nth-child(n + 7){
-		&:enabled{
-			background-color: #c5c56b;
-		}
-		&:disabled{
-			 background-color: #bcbc55;
-		}
+	@media (max-width: 800px){
+		flex-direction: row;
 	}
-    }
-    //imagine if css allowed :nth-child(4..=6)
-    .row:nth-child(-n + 3), .row:nth-child(n + 7){
-	input{
-		&:enabled{
-			background-color: gray;
-		}
-		&:disabled{
-		  	background-color: #737373;
-		}
-	}
-	input:nth-child(n + 4):nth-child(-n + 6){
-		&:enabled{
-			background-color: #c5c56b;
-		}
-		&:disabled{
-			 background-color: #bcbc55;
-		}
-	}
-    }
 }
 #result{
 	width:10%;
@@ -66,5 +35,8 @@
 	a{
 		text-decoration: none;
 		color: cornflowerblue;
+	}
+	@media (max-width: 800px){
+		width: 20%;
 	}
 }
