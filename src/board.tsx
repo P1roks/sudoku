@@ -14,18 +14,18 @@ export function Board(){
     function check(event: React.FormEvent){
     	if(!submitRef.current || !resultRef.current || !formRef.current) return;
         event.preventDefault();
-        const formInputs = [...formRef.current.elements].filter((elem: any) => !elem.disabled && elem.type === "number"); //TODO do not use any anywhere
+        const formInputs = [...formRef.current.elements].filter(elem => elem instanceof HTMLInputElement && !elem.disabled && elem.type === "number") as HTMLInputElement[]
         submitRef.current.disabled = true;
 
-        let correct = 0;
-        formInputs.forEach((inp: any) => {
+        let correct: number = 0;
+        formInputs.forEach(inp => {
             if(inp.valueAsNumber === invis.get(inp.id)){
 		 inp.className = "right" //user guessed correclty
 		 ++correct;
 	    }
             else {
                 inp.className = "wrong" //user guessed incorrectly
-                inp.valueAsNumber = invis.get(inp.id)
+                inp.valueAsNumber = invis.get(inp.id) //show the real number that should go in its place
             }
         })
         if (correct === invis.size){
@@ -37,9 +37,9 @@ export function Board(){
     function clear(event: React.FormEvent){
     	if(!submitRef.current || !resultRef.current || !formRef.current) return;
         event.preventDefault();
-        const formInputs = [...formRef.current.elements].filter((elem: any) => !elem.disabled && elem.type === "number") //get all inputted numbers
+        const formInputs = [...formRef.current.elements].filter(elem => elem instanceof HTMLInputElement && !elem.disabled && elem.type === "number") as HTMLInputElement[] //get all inputted numbers
         submitRef.current.disabled = false; //enable submit button
-    	formInputs.forEach((inp: any) => {inp.valueAsNumber = NaN; inp.className = "";}) //reset all inputs
+    	formInputs.forEach(inp => {inp.valueAsNumber = NaN; inp.className = "";}) //reset all inputs
 	resultRef.current.innerHTML = ``;
     }
     let [tiles,setTiles] = useState<number[][]>([[]])
@@ -52,8 +52,7 @@ export function Board(){
     let temp = -3;
     let cells = tiles.map((tile,no) => {
     temp += (no) % 3 === 0 ? 3 : 0; 
-    return (
-    <Cell key = {no}  y = {temp} tiles = {tile} rStart = {no % 3 * 3} toDissapear={7}/>)})
+    return <Cell key={no}  y={temp} tiles={tile} rStart={no % 3 * 3} toDissapear={7}/>;})
 
     return (
         <form ref={formRef} onSubmit={check} onReset={clear} id="sudoku">

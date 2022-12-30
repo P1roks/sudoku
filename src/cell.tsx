@@ -1,4 +1,4 @@
-import React from "react"
+import {KeyboardEvent} from "react";
 import "./cells.css"
 
 interface CellProps {
@@ -10,6 +10,14 @@ interface CellProps {
 
 export let invis = new Map();
 export const Cell = (props: CellProps) => {
+    const handleInput = (e: KeyboardEvent<HTMLInputElement>) =>{
+    	if(e.key === "Backspace") return;
+	e.preventDefault()
+    	if(!/[1-9]/.test(e.key)) return;
+	let inp = e.target as HTMLInputElement;
+	inp.valueAsNumber = Number(e.key)
+    }
+
     let y = props.y - 1;
 
     let toDissapear = props.toDissapear;
@@ -25,8 +33,8 @@ export const Cell = (props: CellProps) => {
         }
         return (
             visible ?
-            <input type="number" name={coords} id={coords} value={tileNo.toString()} disabled key={coords} /> :
-            <input type="number" name={coords} id={coords} key={coords}/> 
+            <input type="number" name={coords} id={coords} value={tileNo.toString()} key={coords} disabled/> :
+            <input type="number" name={coords} id={coords} key={coords} onKeyDown={(e) => handleInput(e)}/> 
         )
     })
 
