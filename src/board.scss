@@ -1,9 +1,11 @@
+#main{
+    height: 100%;
+}
 #sudoku{
     display:flex;
     justify-content: space-between;
     margin: 0 5%;
     align-items: center;
-    height: 100%;
     @media (max-width: 800px){
 	    flex-direction: column;
 	    margin: 0 0;
@@ -23,6 +25,7 @@
 	    background-color: transparent;
 	}
 	@media (max-width: 800px){
+		margin-top:10%;
 		flex-direction: row;
 	}
 }
@@ -39,4 +42,9 @@
 	@media (max-width: 800px){
 		width: 20%;
 	}
+}
+#timer{
+	font-size: 200%;
+	width: 100%;
+	text-align: center;
 }
