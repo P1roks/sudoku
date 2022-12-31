@@ -23,6 +23,7 @@ export function Board(props: {toDissapear: number}){
         submitRef.current.disabled = true;
         let correct: number = 0;
         formInputs.forEach(inp => {
+	    inp.disabled = true;
             if(inp.valueAsNumber === invis.get(inp.id)){
 		 inp.className = "right" //user guessed correclty
 		 ++correct;
@@ -43,9 +44,10 @@ export function Board(props: {toDissapear: number}){
     	if(!submitRef.current || !resultRef.current || !formRef.current || !timeRef.current) return;
 	timeRef.current.resetTimer();
         event.preventDefault();
-        const formInputs = [...formRef.current.elements].filter(elem => elem instanceof HTMLInputElement && !elem.disabled && elem.type === "number") as HTMLInputElement[] //get all inputted numbers
+        const formInputs = [...formRef.current.elements].filter(elem =>
+		elem instanceof HTMLInputElement && (!elem.disabled || elem.className) && elem.type === "number") as HTMLInputElement[] //get all inputted numbers
         submitRef.current.disabled = false; //enable submit button
-    	formInputs.forEach(inp => {inp.valueAsNumber = NaN; inp.className = "";}) //reset all inputs
+    	formInputs.forEach(inp => {inp.valueAsNumber = NaN; inp.className = ""; inp.disabled = false;}) //reset all inputs
 	resultRef.current.innerHTML = ``;
     }
 

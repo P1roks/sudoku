@@ -24,7 +24,7 @@ input[type=number] {
 input{
     color:#FFFF00;
 }
-input[disabled]{
+input[disabled]:not(.wrong):not(.right){
     color:white;
 }
 .wrong{
