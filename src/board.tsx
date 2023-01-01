@@ -20,12 +20,13 @@ export function Board(props: {toDissapear: number}){
         timeRef.current.stopTimer()
         event.preventDefault();
         const formInputs = [...formRef.current.elements].filter(elem => elem instanceof HTMLInputElement && !elem.disabled && elem.type === "number") as HTMLInputElement[]
-        submitRef.current.disabled = true;
+        submitRef.current.disabled = true; //lock submit button
+
         let correct: number = 0;
         formInputs.forEach(inp => {
-	    inp.disabled = true;
+	    inp.disabled = true; //lock all inputs
             if(inp.valueAsNumber === invis.get(inp.id)){
-		 inp.className = "right" //user guessed correclty
+		 inp.className = "right" //user guessed correctly
 		 ++correct;
 	    }
             else {
@@ -33,6 +34,7 @@ export function Board(props: {toDissapear: number}){
                 inp.valueAsNumber = invis.get(inp.id) //show the real number that should go in its place
             }
         })
+	
         if (correct === invis.size){
             new JSConfetti().addConfetti({confettiNumber:1000}/* {confettiNumber: 243,emojis:["1","2","3","4","5","6","7","8","9"]} */); //only displayed if solved 100% correctly
 	    resultRef.current.innerHTML = `<p>Brawo! udało ci się całkowicie poprawnie rozwiązać sudoku! <a href="./">Wygeneruj następne</a></p>`;
@@ -48,7 +50,7 @@ export function Board(props: {toDissapear: number}){
 		elem instanceof HTMLInputElement && (!elem.disabled || elem.className) && elem.type === "number") as HTMLInputElement[] //get all inputted numbers
         submitRef.current.disabled = false; //enable submit button
     	formInputs.forEach(inp => {inp.valueAsNumber = NaN; inp.className = ""; inp.disabled = false;}) //reset all inputs
-	resultRef.current.innerHTML = ``;
+	resultRef.current.innerHTML = ``; //clear result text
     }
 
     useEffect(() => {

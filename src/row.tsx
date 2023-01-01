@@ -8,7 +8,7 @@ interface RowProps {
 }
 
 export let invis = new Map();
-export const Row = (props: RowProps) => {
+export const Row = ({y,toDissapear,tiles}: RowProps) => {
     const handleInput = (event: KeyboardEvent<HTMLInputElement>) => {
     	if(event.key === "Backspace") return;
 	event.preventDefault()
@@ -17,17 +17,14 @@ export const Row = (props: RowProps) => {
 	input.valueAsNumber = Number(event.key)
     }
 
-    let toDissapear = props.toDissapear;
-    let row = props.tiles.map((tileNo,x) => {
-        let visible = true;
-        let coords = `${props.y}${x}`
+    let row = tiles.map((tileNo,x) => {
+        let coords = `${y}${x}`
         if(toDissapear > 0 && Math.random() > .5){
             --toDissapear;
-            visible = false;
             invis.set(coords,tileNo)
         }
         return (
-            visible ?
+            !invis.has(coords) ?
             <input type="number" name={coords} id={coords} value={tileNo.toString()} key={coords} disabled/> :
             <input type="number" name={coords} id={coords} key={coords} onKeyDown={(e) => handleInput(e)}/> 
         )

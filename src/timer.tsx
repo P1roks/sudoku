@@ -25,9 +25,6 @@ export class Timer extends Component<{},{time: number}>{
 
 	render(){
 		let time = this.state.time;
-		let fancyTime: string;
-		if(time >= 60) fancyTime = `${Math.floor(time/60)}:${(time % 60).toString().padStart(2,'0')}`
-		else fancyTime = time.toString()
-		return <div id="timer"><p>Twój czas: {fancyTime}</p></div> 
+		return <div id="timer"><p>Twój czas: {`${Math.floor(time/60)}:${(time % 60).toString().padStart(2,'0')}`}</p></div> 
 	}
 }
